@@ -56,4 +56,10 @@ public class ClienteService {
 		//repo é a instancia de ClienteRepository
 		return repo.save(obj);
 	}
+	
+//Para deletar um cliente
+	public void delete (Integer id) {
+		buscar(id);
+		repo.deleteById(id);
+	}
 }

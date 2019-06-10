@@ -56,12 +56,18 @@ public class ClienteResource {
 				.path("/{id}").buildAndExpand(obj.getIdCliente()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-//Tem que buscar o id de quem será atualizado
+//Atualizar uma informação - Tem que buscar o id de quem será atualizado
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Cliente obj, @PathVariable Integer id) {
 		obj.setIdCliente(id);//garantir que veio o Id do Objeto que será mudado.
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-	
+
+//Para deletar um cliente
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 }
